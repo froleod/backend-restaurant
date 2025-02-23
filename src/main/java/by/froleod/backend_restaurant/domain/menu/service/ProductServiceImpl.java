@@ -25,6 +25,11 @@ public class ProductServiceImpl implements ProductService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public Product createProduct(Product product) {
+        return productRepository.save(product);
+    }
+
     private ProductDto convertToDto(Product product) {
         ProductDto dto = new ProductDto();
         dto.setName(product.getName());
