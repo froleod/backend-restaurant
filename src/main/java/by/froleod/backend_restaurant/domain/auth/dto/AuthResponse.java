@@ -1,21 +1,17 @@
 package by.froleod.backend_restaurant.domain.auth.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-public class AuthResponse {
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Schema(description = "Ответ c токеном доступа")public class AuthResponse {
 
+    @Schema(description = "Токен доступа", example = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyMjUwNj...")
     private String token;
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public AuthResponse(String token) {
-        this.token = token;
-    }
 }
