@@ -10,8 +10,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Schema(description = "Ответ c токеном доступа")public class AuthResponse {
+@Schema(description = "Ответ c токеном доступа")
+public class AuthResponse {
 
     @Schema(description = "Токен доступа", example = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTYyMjUwNj...")
     private String token;
+
+    @Schema(description = "Роль пользователя")
+    private String role;
 }
