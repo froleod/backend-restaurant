@@ -36,6 +36,20 @@ public class ProductServiceImpl implements ProductService {
         productRepository.deleteById(id);
     }
 
+    @Transactional
+    public Product updateProduct(Long id, Product updatedProduct) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+
+        // Обновляем данные продукта
+        product.setName(updatedProduct.getName());
+        product.setDescription(updatedProduct.getDescription());
+        product.setPrice(updatedProduct.getPrice());
+        product.setImageUrl(updatedProduct.getImageUrl());
+
+        return productRepository.save(product);
+    }
+
     private ProductDto convertToDto(Product product) {
         ProductDto dto = new ProductDto();
         dto.setId(product.getId());
