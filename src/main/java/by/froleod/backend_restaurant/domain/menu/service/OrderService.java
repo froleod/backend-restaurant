@@ -9,6 +9,6 @@ public interface OrderService {
 
     Order createOrder(String username, List<OrderItemDto> items);
 
-    List<Order> getAllOrders();
+    List<Order> getAllOrdersByUsername(String username);
 
 }
