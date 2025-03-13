@@ -23,6 +23,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
+    private final MailSenderService mailSenderService;
 
     @Transactional
     @Override
@@ -50,7 +51,11 @@ public class OrderServiceImpl implements OrderService {
         }
         order.setItems(orderItems);
         order.setTotalPrice(totalPrice);
-        return orderRepository.save(order);
+
+        var savedOrder = orderRepository.save(order);
+        String emailSubject = "Твой заказ в ресторане Уют";
+        mailSenderService.send(user.getEmail(), emailSubject, MailSenderService.buildOrderEmailText(savedOrder));
+        return savedOrder;
     }
 
     @Override
